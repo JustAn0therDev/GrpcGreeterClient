@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcGreeterClient";
+
+package greet;
+
+service Version {
+  rpc GetVersion (VersionRequest) returns (VersionResponse);
+}
+
+message VersionRequest {
+  string client = 1;
+}
+
+message VersionResponse {
+  // O número ao lado da propriedade de uma mensagem se refere ao "número da mensagem", usado pelo compilador na hora de gerar o 
+  // payload em binário para distinguir as propriedades e quantos bytes cada propriedade vai ocupar (1 byte da primeira até a décima quinta, da décima sexta até 2047 ocupa dois bytes).
+  // Google recomenda que os valores mais transportados frequentemente sejam alocados para as primeiras quinze propriedades.
+
+  // Caso a numeração das propriedades esteja incorreta entre as aplicações, o(s) valor(es) que estiver(em) incorreto(s) retornará(ão) vazio(s).
+  string version = 1; 
+  Person person = 2;
+}
+
+message Person {
+	string name = 1;
+	int32 age = 2;
+}

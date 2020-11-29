@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcGreeterClient";
+
+package readkey;
+
+service Readkey {
+  rpc GetKeyResponse (ReadkeyRequest) returns (ReadkeyResponse);
+}
+
+message ReadkeyRequest {
+  string key = 1;
+}
+
+message ReadkeyResponse {
+  bool received = 1;
+}
